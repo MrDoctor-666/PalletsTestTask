@@ -88,7 +88,8 @@ namespace PalletsTestTask
 
             //Generate pallets with this boxes
             int palettesNumber = random.Next(3, boxesNumber);
-            int boxesAmount;// = (int)Math.Ceiling(1f * generatedBoxes.Count/palettesNumber);
+            int boxesAmount;
+            int midBoxesAmount = (int)Math.Ceiling(1f * generatedBoxes.Count/palettesNumber);
             Warehouse warehouse = new Warehouse();
             for (int i = 0; i < palettesNumber; i++)
             {
@@ -99,7 +100,7 @@ namespace PalletsTestTask
                     );
                 Pallet pallet = new Pallet(i, size);
                 int count = 0, index = 0;
-                boxesAmount = random.Next(1, Math.Max(1, generatedBoxes.Count - palettesNumber));
+                boxesAmount = random.Next(midBoxesAmount - 1, midBoxesAmount + 1);
                 while (count < boxesAmount && index < generatedBoxes.Count)
                 {
                     if (pallet.AddBox(generatedBoxes[index]))
